@@ -1,4 +1,4 @@
-<div class="space-y-8">
+<div class="space-y-4">
     <h1 class="text-3xl font-bold py-4">Tickets</h1>
 
     @foreach ($tickets as $ticket)
@@ -8,4 +8,8 @@
             <span class="text-sm">{{ $ticket->status }}</span>
         </div>
     @endforeach
+
+    <div class="mt-4">
+        {{ $tickets->links() }}
+    </div>
 </div>

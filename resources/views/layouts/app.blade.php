@@ -30,7 +30,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="text-white container mx-auto">
+        <main class="text-white container mx-auto px-4 xl:px-0 py-4">
             {{ $slot }}
         </main>
     </div>

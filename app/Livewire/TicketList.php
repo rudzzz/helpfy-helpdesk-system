@@ -9,7 +9,7 @@ class TicketList extends Component
 {
     public function render()
     {
-        $tickets = Ticket::latest()->get();
+        $tickets = Ticket::latest()->paginate(10);
 
         return view('livewire.ticket-list', compact('tickets'));
     }

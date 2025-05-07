@@ -10,7 +10,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
 });
 
-Route::middleware(['auth'])->get('/tickets', TicketList::class);
+Route::middleware(['auth'])->get('/tickets', TicketList::class)->name('tickets');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
