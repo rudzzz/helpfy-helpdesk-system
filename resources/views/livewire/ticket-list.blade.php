@@ -27,7 +27,26 @@
         <div class="p-4 bg-white shadow rounded text-primaryDark">
             <h2 class="text-lg font-semibold">{{ $ticket->title }}</h2>
             <p>{{ $ticket->description }}</p>
-            <span class="text-sm">{{ $ticket->status }}</span>
+
+            <div class="flex gap-2 items-center text-sm text-white">
+                <span @class([
+                    'p-2 rounded font-medium',
+                    'bg-green-700 text-green-200 ' => $ticket->status == 'open',
+                    'bg-yellow-700 text-yellow-200 ' => $ticket->status == 'in_progress',
+                    'bg-red-700 text-red-200 ' => $ticket->status == 'closed',
+                ])>
+                    {{ ucfirst($ticket->status) }}
+                </span>
+
+                <span @class([
+                    'p-2 rounded font-medium',
+                    'bg-blue-300 text-blue-800 ' => $ticket->priority == 'low',
+                    'bg-orange-300 text-orange-800 ' => $ticket->priority == 'medium',
+                    'bg-red-300 text-red-800 ' => $ticket->priority == 'high',
+                ])>
+                    {{ ucfirst($ticket->priority) }}
+                </span>
+            </div>
         </div>
     @endforeach
 
