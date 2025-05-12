@@ -3,6 +3,12 @@
 
     <div class="flex flex-col md:flex-row md:items-center gap-4">
         <div class="w-full md:w-1/2">
+            <label for="search" class="block text-sm font-medium">Search</label>
+            <input type="text" wire:model.lazy="search" placeholder="Search title or description..."
+                class="mt-1 block w-full border-gray-300 rounded-md text-primaryDark">
+        </div>
+
+        <div class="w-full md:w-1/2">
             <label for="status" class="block text-sm font-medium">Status</label>
             <select wire:model.lazy="status" id="status"
                 class="mt-1 block w-full border-gray-300 rounded-md text-primaryDark">
@@ -23,8 +29,25 @@
                 <option value="high">High</option>
             </select>
         </div>
-    </div>
 
+        <div class="w-full md:w-1/2">
+            <label for="category" class="block text-sm font-medium">Category</label>
+            <select wire:model.lazy="category_id" id="category_id"
+                class="mt-1 block w-full border-gray-300 rounded-md text-primaryDark">
+                <option value="">All</option>
+                @foreach ($categories as $category)
+                    <option value="{{ (int) $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="w-full md:w-auto flex items-end">
+            <button wire:click="resetFilters"
+                class="mt-6 bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md font-medium text-white">
+                Clear Filters
+            </button>
+        </div>
+    </div>
 
     @foreach ($tickets as $ticket)
         <div class="p-4 bg-white shadow-sm border border-gray-200 rounded-md space-y-2 text-primaryDark">
@@ -55,6 +78,12 @@
                     </span>
                 </div>
             </div>
+
+            <hr class="pb-3">
+
+            <span class="text-sm bg-primaryDark text-white font-medium p-2 rounded-md">
+                {{ $ticket->category?->name ?? '-' }}
+            </span>
         </div>
     @endforeach
 
